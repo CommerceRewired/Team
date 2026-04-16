@@ -12,17 +12,17 @@
 
     :root {
       /* Backgrounds */
-      --bg-dark:    #182028;
-      --bg-mid:     #1d2c3a;
-      --bg-card:    #223040;
-      --bg-teal:    #1b3444;
+      --bg-dark:    #111d25;
+      --bg-mid:     #182330;
+      --bg-card:    #1e2d3a;
+      --bg-teal:    #1a3040;
 
-      /* Brand palette */
-      --sky-blue:   #7ec8e3;   /* heading colour 1 */
-      --tan:        #c9a97a;   /* heading colour 2 / accent */
-      --blue-grey:  #8aaabb;   /* subheading colour 2 */
-      --ice-blue:   #d6ecf3;   /* body copy */
-      --muted:      #5e7f90;
+      /* Brand palette — exact hex codes */
+      --sky-blue:   #AEC8D4;   /* heading colour 1 — light blue-grey */
+      --tan:        #C47A3A;   /* heading colour 2 / accent — orange-tan */
+      --blue-grey:  #4A7386;   /* subheading colour 2 — mid teal-blue */
+      --ice-blue:   #d6ecf3;   /* body copy — kept as light ice blue */
+      --muted:      #4A7386;
 
       /* Fonts */
       --font-heading: 'Oswald', sans-serif;
@@ -62,7 +62,6 @@
       height: 48px;
       width: auto;
       display: block;
-      mix-blend-mode: screen;
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
@@ -324,7 +323,6 @@
       height: 40px;
       width: auto;
       display: block;
-      mix-blend-mode: screen;
     }
     footer p {
       font-family: var(--font-body); font-weight: 300;
@@ -369,7 +367,7 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="Logo_Box.png" alt="Commerce Rewired" class="nav-logo-img" />
+    <img src="Commerce_Rewired_Branding.png" alt="Commerce Rewired" class="nav-logo-img" />
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
@@ -441,7 +439,7 @@
   <div class="services-grid reveal">
     <div class="service-card">
       <div class="service-num">01</div>
-      <p class="sub-heading">Growth Strategy &amp; Omnichannel Consulting</p>
+      <p class="sub-heading">Growth Strategy &amp; Omnichannel</p>
       <p class="body">We develop growth roadmaps and omnichannel strategies to help brands connect purpose, performance, and customer experience. Services include strategic planning, audits, AI-driven insights, and execution partnerships.</p>
     </div>
     <div class="service-card">
@@ -474,12 +472,10 @@
 
 <!-- TEAM -->
 <section class="team" id="team">
-  <div class="team-header-row reveal">
-    <div>
-      <p class="section-label">The Team</p>
-      <h2>Senior Experts.<br><span class="accent">Real Results.</span></h2>
-    </div>
-    <p class="section-intro" style="max-width:400px">With deep experience across retail, merchandising, licensing, and ecommerce — we understand buyer decisions, supplier operations, and retail expectations.</p>
+  <div class="reveal">
+    <p class="section-label">The Team</p>
+    <h2>Senior Experts.<br><span class="accent">Real Results.</span></h2>
+    <p class="section-intro" style="margin-top:1.2rem;margin-bottom:3.5rem">With deep experience across retail, merchandising, licensing, and ecommerce — we understand buyer decisions, supplier operations, and retail expectations.</p>
   </div>
 
   <div class="team-grid">
@@ -578,7 +574,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="Logo_Box.png" alt="Commerce Rewired" class="footer-logo-img" />
+  <img src="Commerce_Rewired_Branding.png" alt="Commerce Rewired" class="footer-logo-img" />
   <p>© 2026 Commerce Rewired. All rights reserved.</p>
 </footer>
 
