@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commerce Rewired | Advisory for a New Era of Commerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Open+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Backgrounds */
+      --bg-dark:    #182028;
+      --bg-mid:     #1d2c3a;
+      --bg-card:    #223040;
+      --bg-teal:    #1b3444;
+
+      /* Brand palette */
+      --sky-blue:   #7ec8e3;   /* heading colour 1 */
+      --tan:        #c9a97a;   /* heading colour 2 / accent */
+      --blue-grey:  #8aaabb;   /* subheading colour 2 */
+      --ice-blue:   #d6ecf3;   /* body copy */
+      --muted:      #5e7f90;
+
+      /* Fonts */
+      --font-heading: 'Oswald', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+
+      /* Sizes */
+      --sz-h1:   3.125rem;    /* 50px */
+      --sz-h2:   3.125rem;    /* 50px */
+      --sz-sub:  1.875rem;    /* 30px */
+      --sz-h3:   2.1875rem;   /* 35px */
+      --sz-body: 1.375rem;    /* 22px */
+      --sz-sm:   1.1875rem;   /* 19px */
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-dark);
+      color: var(--ice-blue);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--sz-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(24,32,40,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(126,200,227,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+      mix-blend-mode: screen;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 0.92rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue-grey); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sky-blue); }
+    .nav-cta {
+      background: var(--tan) !important;
+      color: var(--bg-dark) !important;
+      padding: 0.45rem 1.3rem; border-radius: 3px;
+    }
+    .nav-cta:hover { opacity: 0.84 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--sky-blue); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 0 5%;
+      background: linear-gradient(140deg, var(--bg-dark) 0%, var(--bg-teal) 55%, var(--bg-mid) 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 700px 600px at 85% 45%, rgba(126,200,227,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 350px 350px at 10% 75%, rgba(201,169,122,0.06) 0%, transparent 70%);
+    }
+    .hero-ring {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      border: 1.5px solid rgba(126,200,227,0.09);
+    }
+    .hero-ring-1 { width: 560px; height: 560px; top: -120px; right: -120px; }
+    .hero-ring-2 { width: 320px; height: 320px; top: 30px; right: 100px; border-color: rgba(201,169,122,0.07); }
+    .hero-ring-3 { width: 220px; height: 220px; bottom: 60px; left: -60px; border-color: rgba(126,200,227,0.06); }
+
+    .hero-content {
+      position: relative; z-index: 2; max-width: 760px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: var(--sz-sub); letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--tan); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: clamp(2.8rem, 8vw, var(--sz-h1));
+      line-height: 1.05; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--sky-blue); margin-bottom: 1.6rem;
+    }
+    h1 .accent { color: var(--tan); }
+    .hero-sub {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: clamp(1.05rem, 2vw, var(--sz-body));
+      color: var(--ice-blue); max-width: 580px;
+      margin-bottom: 2.6rem; line-height: 1.8;
+    }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; padding: 0.9rem 2.2rem; border-radius: 3px;
+      transition: all 0.22s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--tan); color: var(--bg-dark); }
+    .btn-primary:hover { opacity: 0.84; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--sky-blue); border: 1.5px solid rgba(126,200,227,0.35); }
+    .btn-outline:hover { border-color: var(--sky-blue); transform: translateY(-2px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 5%; }
+    .section-label {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 0.88rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--tan); margin-bottom: 0.7rem;
+    }
+    /* H2 — 50px Oswald, sky blue, weight 400 */
+    h2 {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: clamp(2rem, 5vw, var(--sz-h2));
+      line-height: 1.05; text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--sky-blue); margin-bottom: 1.4rem;
+    }
+    h2 .accent { color: var(--tan); }
+    /* Subheadings (30–35px Oswald, blue-grey) */
+    .sub-heading {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: var(--sz-h3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--blue-grey); margin-bottom: 0.8rem; line-height: 1.15;
+    }
+    .sub-heading-sm {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: var(--sz-sub);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--blue-grey); margin-bottom: 0.7rem; line-height: 1.15;
+    }
+    .section-intro {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-body); color: var(--ice-blue);
+      max-width: 640px; line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--bg-mid); position: relative; overflow: hidden; }
+    .about::before {
+      content: ''; position: absolute; right: -100px; top: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 1.5px solid rgba(126,200,227,0.07);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; margin-top: 4rem; position: relative; z-index: 1;
+    }
+    .about-block { margin-bottom: 2.5rem; }
+    .about-block p {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-body); color: var(--ice-blue); line-height: 1.8;
+    }
+    .diff-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .diff-arrow {
+      flex-shrink: 0; width: 22px; height: 22px; background: var(--tan);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin-top: 5px;
+    }
+    .diff-arrow::after { content: '→'; font-size: 0.65rem; color: var(--bg-dark); }
+    .diff-text {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-sm); color: var(--ice-blue); line-height: 1.75;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--bg-dark); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 4rem; }
+    .service-card {
+      background: var(--bg-card); padding: 2.8rem 2.4rem;
+      position: relative; overflow: hidden; transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--sky-blue);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-num {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 4.5rem; color: rgba(126,200,227,0.08); line-height: 1; margin-bottom: 1rem;
+    }
+    .service-card p.body {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-sm); color: var(--ice-blue); line-height: 1.8;
+    }
+
+    /* ── WHO WE SERVE ── */
+    .serve { background: var(--bg-mid); }
+    .serve-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 4rem; }
+    .serve-card {
+      background: var(--bg-card); padding: 2rem 1.6rem;
+      border-top: 3px solid var(--sky-blue); transition: transform 0.3s;
+    }
+    .serve-card:hover { transform: translateY(-4px); }
+
+    /* ── TEAM ── */
+    .team { background: var(--bg-teal); }
+    .team-header-row {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 1.5rem; margin-bottom: 4rem;
+    }
+    .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; }
+    .team-card {
+      background: rgba(27,52,68,0.65); backdrop-filter: blur(4px);
+      padding: 2.5rem;
+      transition: background 0.3s;
+    }
+    .team-card:hover { background: rgba(34,48,64,0.85); }
+    .team-photo-placeholder {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg-mid), var(--bg-card));
+      border: 2.5px solid var(--tan);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .initials {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 1.8rem; color: var(--sky-blue);
+    }
+    .team-bio {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-sm); color: var(--ice-blue); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .team-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .team-highlights li {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-sm); color: var(--ice-blue);
+      padding-left: 1.1rem; position: relative; line-height: 1.7;
+    }
+    .team-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--tan); font-size: 0.75rem; top: 5px; }
+    .team-email {
+      display: inline-block; margin-top: 1.1rem;
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--tan); text-decoration: none;
+      border-bottom: 1px solid transparent; transition: border-color 0.2s;
+    }
+    .team-email:hover { border-color: var(--tan); }
+
+    /* ── LOGOS ── */
+    .logos { background: var(--bg-card); padding: 5.5rem 5%; }
+    .logos-title {
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: var(--sz-sub); letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--blue-grey); text-align: center; margin-bottom: 3rem;
+    }
+    .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+    .logo-item {
+      padding: 1rem 1.8rem;
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(214,236,243,0.28); transition: color 0.2s; white-space: nowrap;
+    }
+    .logo-item:hover { color: var(--ice-blue); }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(140deg, var(--bg-teal) 0%, var(--bg-mid) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact::before {
+      content: ''; position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
+      width: 650px; height: 650px; border-radius: 50%;
+      border: 1.5px solid rgba(126,200,227,0.09);
+    }
+    .contact-inner { position: relative; z-index: 1; }
+    .contact .body-copy {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: var(--sz-body); color: var(--ice-blue);
+      margin-bottom: 2.5rem; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.8;
+    }
+    .contact-email {
+      display: inline-block; margin-top: 1rem;
+      font-family: var(--font-heading); font-weight: 400;
+      font-size: var(--sz-sub); letter-spacing: 0.08em;
+      color: var(--sky-blue); text-decoration: none;
+      border-bottom: 2px solid var(--tan); padding-bottom: 2px; transition: color 0.2s;
+    }
+    .contact-email:hover { color: var(--tan); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f161c;
+      padding: 2rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+      mix-blend-mode: screen;
+    }
+    footer p {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: 0.85rem; color: var(--muted);
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: var(--bg-teal); padding: 1.5rem 5%; gap: 1.2rem;
+        border-bottom: 2px solid var(--tan);
+      }
+      .hamburger { display: flex; }
+      .about-grid,
+      .services-grid,
+      .team-grid { grid-template-columns: 1fr; }
+      .serve-grid { grid-template-columns: repeat(2,1fr); }
+      :root { --sz-h2: 2.4rem; --sz-h3: 1.7rem; --sz-sub: 1.45rem; --sz-body: 1.2rem; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 5rem 5%; }
+      .serve-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="Logo_Box.png" alt="Commerce Rewired" class="nav-logo-img" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-ring hero-ring-3"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Advisory for a New Era of Commerce</p>
+    <h1>Commerce<br><span class="accent">Rewired</span></h1>
+    <p class="hero-sub">A senior advisory team helping retailers and DTC brands navigate growth and complexity through strategy, leadership, and technology.</p>
+    <div class="btn-row">
+      <a href="#services" class="btn btn-primary">Explore Services</a>
+      <a href="#team" class="btn btn-outline">Meet the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <p class="section-label">Who We Are</p>
+    <h2>Rewiring Retail for <span class="accent">What's Next</span></h2>
+    <p class="section-intro">Commerce Rewired is a consulting and thought leadership firm founded by seasoned retail, marketing, and technology leaders — bridging strategy and execution with clarity, confidence, and purpose.</p>
+  </div>
+  <div class="about-grid reveal">
+    <div>
+      <div class="about-block">
+        <p class="sub-heading">Vision</p>
+        <p>To be the go-to consulting and event-based partner for companies seeking innovation, clarity, and competitive advantage in the retail and digital economy.</p>
+      </div>
+      <div class="about-block">
+        <p class="sub-heading">Mission</p>
+        <p>To reimagine commerce by putting people and purpose at the center — helping leaders align strategy, culture, and technology to remove friction and create seamless customer experiences.</p>
+      </div>
+    </div>
+    <div>
+      <div class="about-block">
+        <p class="sub-heading">What Sets Us Apart</p>
+        <div>
+          <div class="diff-item"><div class="diff-arrow"></div><span class="diff-text">Decades of leadership in physical and digital retail operations</span></div>
+          <div class="diff-item"><div class="diff-arrow"></div><span class="diff-text">A holistic approach connecting strategy, leadership, and technology</span></div>
+          <div class="diff-item"><div class="diff-arrow"></div><span class="diff-text">Proprietary networking formats that provide measurable sponsor ROI</span></div>
+          <div class="diff-item"><div class="diff-arrow"></div><span class="diff-text">Proven thought leadership through books, podcasts, and industry events</span></div>
+          <div class="diff-item"><div class="diff-arrow"></div><span class="diff-text">A trusted reputation as practitioners and advisors, not just consultants</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="reveal">
+    <p class="section-label">Core Services</p>
+    <h2>Three Integrated Practices.<br><span class="accent">One Clear Path to Growth.</span></h2>
+    <p class="section-intro">Commerce Rewired operates through three integrated practice areas that reflect the evolving needs of modern retail leaders.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <p class="sub-heading">Growth Strategy &amp; Omnichannel Consulting</p>
+      <p class="body">We develop growth roadmaps and omnichannel strategies to help brands connect purpose, performance, and customer experience. Services include strategic planning, audits, AI-driven insights, and execution partnerships.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <p class="sub-heading">Leadership &amp; Coaching</p>
+      <p class="body">We align teams and leaders through executive coaching, workshops, and culture advisory programs. Our leadership frameworks emphasize collaboration, accountability, and resilience.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <p class="sub-heading">Retail Technology &amp; Vendor Advisory</p>
+      <p class="body">We curate and evaluate technology partnerships that drive operational efficiency and growth. Services include retail tech roundtables, vendor evaluation reports, and partner network facilitation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="serve" id="serve">
+  <div class="reveal">
+    <p class="section-label">Who We Serve</p>
+    <h2>Built for <span class="accent">Retail Leaders</span></h2>
+    <p class="section-intro">We serve retail and DTC leaders who seek growth through clarity and connection.</p>
+  </div>
+  <div class="serve-grid reveal">
+    <div class="serve-card"><p class="sub-heading-sm">Small to Mid-Sized Retailers Seeking Digital Growth</p></div>
+    <div class="serve-card"><p class="sub-heading-sm">Enterprise Brands Undergoing Transformation</p></div>
+    <div class="serve-card"><p class="sub-heading-sm">D2C &amp; Omnichannel Brands</p></div>
+    <div class="serve-card"><p class="sub-heading-sm">Technology Vendors &amp; Solution Providers</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-header-row reveal">
+    <div>
+      <p class="section-label">The Team</p>
+      <h2>Senior Experts.<br><span class="accent">Real Results.</span></h2>
+    </div>
+    <p class="section-intro" style="max-width:400px">With deep experience across retail, merchandising, licensing, and ecommerce — we understand buyer decisions, supplier operations, and retail expectations.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="team-card reveal">
+      <div>
+        <p class="sub-heading-sm" style="color:var(--tan)">Retail Strategy</p>
+        <p style="font-family:var(--font-heading);font-weight:400;font-size:var(--sz-h2);text-transform:uppercase;letter-spacing:0.04em;color:var(--sky-blue);line-height:1;margin-bottom:0.9rem">Chris Parsons</p>
+        <p class="team-bio">Retail executive and author of <em>Retail Rewired</em>. Twenty-five years in merchandising, marketing, and ecommerce at Walmart, Home Hardware, Newegg, and Ren's Pets.</p>
+        <ul class="team-highlights">
+          <li>Launched Walmart Canada's ecommerce platform and Omni-Channel strategy</li>
+          <li>Grew Newegg Canada from under $40M to $100M in one year; led global ecommerce across 8 countries</li>
+          <li>Grew Home Hardware ecommerce from $8M to nearly $100M</li>
+          <li>Created and launched full DTC brand, Tidy Living</li>
+        </ul>
+        <a href="mailto:hello@commercerewired.co" class="team-email">hello@commercerewired.co</a>
+      </div>
+    </div>
+
+    <div class="team-card reveal">
+      <div>
+        <p class="sub-heading-sm" style="color:var(--tan)">Operations, Logistics &amp; CX</p>
+        <p style="font-family:var(--font-heading);font-weight:400;font-size:var(--sz-h2);text-transform:uppercase;letter-spacing:0.04em;color:var(--sky-blue);line-height:1;margin-bottom:0.9rem">Tara Conway</p>
+        <p class="team-bio">Former VP of Digital, Marketing and Customer Experience at Bell/The Source. Deep background in operations, logistics, fulfillment and omnichannel transformation.</p>
+        <ul class="team-highlights">
+          <li>Pioneered Canada's omni-channel retail evolution at Toys "R" Us, growing revenue to $150M+</li>
+          <li>Led international eCommerce expansion into three markets</li>
+          <li>Built and scaled a private-label consumer electronics brand to $200M+ annually</li>
+        </ul>
+        <a href="mailto:hello@commercerewired.co" class="team-email">hello@commercerewired.co</a>
+      </div>
+    </div>
+
+    <div class="team-card reveal">
+      <div>
+        <p class="sub-heading-sm" style="color:var(--tan)">Ecommerce, Digital &amp; Marketing</p>
+        <p style="font-family:var(--font-heading);font-weight:400;font-size:var(--sz-h2);text-transform:uppercase;letter-spacing:0.04em;color:var(--sky-blue);line-height:1;margin-bottom:0.9rem">Johnny Russo</p>
+        <p class="team-bio">CEO of Zero Lush and co-owner of Rushcycle. Former CDMO at Lamour and VP at Kersheh Group. Seventeen years leading ecommerce and digital programs.</p>
+        <ul class="team-highlights">
+          <li>Led over $1B in ecommerce growth over the last 5 years</li>
+          <li>Solidified partnerships with Walmart US, Target, Winners, TJX, and Kohl's</li>
+          <li>Launched B2B platform from $0 to $500K in 5 months with no marketing spend</li>
+          <li>Author of <em>Mastering Mindful Leadership</em></li>
+        </ul>
+        <a href="mailto:hello@commercerewired.co" class="team-email">hello@commercerewired.co</a>
+      </div>
+    </div>
+
+    <div class="team-card reveal">
+      <div>
+        <p class="sub-heading-sm" style="color:var(--tan)">Technology, Data &amp; Growth</p>
+        <p style="font-family:var(--font-heading);font-weight:400;font-size:var(--sz-h2);text-transform:uppercase;letter-spacing:0.04em;color:var(--sky-blue);line-height:1;margin-bottom:0.9rem">David Nagy</p>
+        <p class="team-bio">Entrepreneur, strategist, and fractional executive. 20+ years as a founder and operator of multiple digital businesses and SaaS companies, advising over 2,000 companies.</p>
+        <ul class="team-highlights">
+          <li>Developer of the 6-KPIs operating system used by 2,000+ companies</li>
+          <li>Strategic advisor on the $4B Canada Digital Adoption Program</li>
+          <li>SaaS Founder of Aperture and PanoradAI</li>
+          <li>Fractional CIO of Canadian Manufacturers &amp; Exporters Association</li>
+        </ul>
+        <a href="mailto:hello@commercerewired.co" class="team-email">hello@commercerewired.co</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section class="logos">
+  <p class="logos-title">Brands &amp; Organizations We've Worked With</p>
+  <div class="logo-grid">
+    <span class="logo-item">Walmart</span><span class="logo-item">Home Hardware</span>
+    <span class="logo-item">Newegg</span><span class="logo-item">ASICS</span>
+    <span class="logo-item">Saje Wellness</span><span class="logo-item">Orangetheory Fitness</span>
+    <span class="logo-item">George</span><span class="logo-item">Tidy Living</span>
+    <span class="logo-item">The Source</span><span class="logo-item">Bell</span>
+    <span class="logo-item">Toys "R" Us</span><span class="logo-item">Amex</span>
+    <span class="logo-item">Canadian Tire</span><span class="logo-item">Lamour</span>
+    <span class="logo-item">Mark's</span><span class="logo-item">Kersheh Group</span>
+    <span class="logo-item">Buffalo Jeans</span><span class="logo-item">Fruit of the Loom</span>
+    <span class="logo-item">Jack Victor</span><span class="logo-item">Bentley</span>
+    <span class="logo-item">Mexx</span><span class="logo-item">Ten Tree</span>
+    <span class="logo-item">HBO</span><span class="logo-item">General Motors</span>
+    <span class="logo-item">Virgin Mobile</span><span class="logo-item">Wendy's</span>
+    <span class="logo-item">Samsung</span><span class="logo-item">CM&amp;E</span>
+    <span class="logo-item">eCommerce Canada</span><span class="logo-item">Ren's Pets</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <p class="section-label">Let's Talk</p>
+    <h2>Ready to <span class="accent">Rewire</span><br>Your Commerce?</h2>
+    <p class="body-copy">Reach out to start a conversation about your growth strategy, leadership challenges, or technology roadmap.</p>
+    <a href="mailto:hello@commercerewired.co" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;">Get In Touch</a>
+    <br>
+    <a href="mailto:hello@commercerewired.co" class="contact-email">hello@commercerewired.co</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="Logo_Box.png" alt="Commerce Rewired" class="footer-logo-img" />
+  <p>© 2026 Commerce Rewired. All rights reserved.</p>
+</footer>
+
+<script>
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if (e.key === 'Enter') navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => entry.target.classList.add('visible'), idx * 130);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.5)' : '';
+  });
+</script>
+</body>
+</html>
